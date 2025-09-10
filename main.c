@@ -5,43 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 20:21:04 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/07/22 20:23:28 by lucpardo         ###   ########.fr       */
+/*   Created: 2025/09/01 16:56:08 by lucpardo          #+#    #+#             */
+/*   Updated: 2025/09/01 17:00:42 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "so_long.h"
 
-int	close_window(t_game *game)
+static void	init_game(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
-	exit(0);
-	return (0);
+	game->player.moves = 0;
+	load_sprites(game);
 }
 
-int	key_press(int keycode, t_game *game)
+static int	init_mlx(t_game *game)
 {
-	if (keycode == 65307)
-		close_window(game);
-	return (0);
-}
-
-void	fill_window(t_game *game, int color)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < 600)
+	game->mlx = mlx_init();
+	if (!game->mlx)
 	{
-		x = 0;
-		while (x < 800)
-		{
-			mlx_pixel_put(game->mlx, game->win, x, y, color);
-			x++;
-		}
-		y++;
+		ft_printf("Error\nFailed to initialize MLX\n");
+		return (0);
 	}
+	return (1);
+}
+
+static int	create_window(t_game *game)
+{
+	game->win = mlx_new_window(game->mlx, game->map_width * TILE_SIZE,
+			game->map_height * TILE_SIZE, "So Long");
+	if (!game->win)
+	{
+		ft_printf("Error\nFailed to create window\n");
+		return (0);
+	}
+	return (1);
+}
+
+static void	setup_hooks(t_game *game)
+{
+	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_key_hook(game->win, key_press, game);
 }
 
 int	main(int argc, char **argv)
@@ -50,25 +52,17 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf("error\ndo this instead: ./so_long map.ber\n");
+		ft_printf("Error\nUsage: ./so_long map.ber\n");
 		return (1);
 	}
-	(void)argv;
-	game.mlx = mlx_init();
-	if (!game.mlx)
-	{
-		ft_printf("error\nmlx didn't init D:\n");
+	if (!init_mlx(&game))
 		return (1);
-	}
-	game.win = mlx_new_window(game.mlx, 800, 600, "So Long");
-	if (!game.win)
-	{
-		ft_printf("error\nwindow wasn't created D:\n");
+	parse_map(argv[1], &game);
+	if (!create_window(&game))
 		return (1);
-	}
-	fill_window(&game, 0xFFD1DC);
-	mlx_hook(game.win, 17, 0, close_window, &game);
-	mlx_key_hook(game.win, key_press, &game);
+	init_game(&game);
+	render_map(&game);
+	setup_hooks(&game);
 	mlx_loop(game.mlx);
 	return (0);
 }
