@@ -6,14 +6,14 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:56:08 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 20:31:13 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:06:02 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
 // the map is read twice, once to count and once to store, 4 gud mem allocation
 // counts total lines in map file, opens it and counts newlines
-// these newline characters are used to know map height before allocating
+// these newline characters are used to know map HEIGHT before allocating
 static int	count_lines(char *filename)
 {
 	int		fd;
@@ -100,4 +100,9 @@ void	parse_map(char *filename, t_game *game)
 	init_map_memory(game);
 	read_map_lines(filename, game);
 	find_player(game);
+
+	validate_extension(filename);
+	validate_rectangular(game);
+	validate_walls(game);
+	validate_elements(game);
 }

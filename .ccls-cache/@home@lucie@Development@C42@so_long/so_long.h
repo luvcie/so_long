@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:32:17 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 19:08:22 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:51:28 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,18 @@ typedef struct s_game
 
 void	display_moves_on_screen(t_game *game);
 void	load_sprites(t_game *game);
+void	count_elements(t_game *game, int *counts);
 void	parse_map(char *map_file, t_game *game);
 void	update_player_position(t_game *game, int old_x, int old_y);
 void	render_map(t_game *game);
 void	find_player(t_game *game);
 void	move_player_bonus(t_game *game, int new_x, int new_y);
+void	print_map_error(char *message);
+void	validate_extension(char *filename);
+void	validate_rectangular(t_game *game);
+void	validate_walls(t_game *game);
+void	validate_elements(t_game *game);
+void	count_elements(t_game *game, int *counts);
 int		close_window(t_game *game);
 int		key_press(int keycode, t_game *game);
 char	*get_next_line(int fd);

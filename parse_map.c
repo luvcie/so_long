@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:56:08 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 20:33:45 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 22:07:41 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -94,10 +94,14 @@ static void	read_map_lines(char *filename, t_game *game)
 // reads all map lines into array then finds player start position
 void	parse_map(char *filename, t_game *game)
 {
+	validate_extension(filename);
 	game->map_height = count_lines(filename);
 	if (game->map_height == 0)
 		exit(1);
 	init_map_memory(game);
 	read_map_lines(filename, game);
 	find_player(game);
+	validate_rectangular(game);
+	validate_walls(game);
+	validate_elements(game);
 }

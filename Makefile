@@ -5,6 +5,8 @@ CFLAGS = -Wall -Wextra -Werror -g
 SRCS = main.c \
        rendermap.c \
        parse_map.c \
+       validate_map.c \
+       validate_elements.c \
        load_sprites.c \
        player_movement.c \
        get_next_line.c \
@@ -14,9 +16,11 @@ SRCS = main.c \
 BONUS_SRCS = main.c \
              rendermap.c \
              parse_map.c \
+             validate_map.c \
+             validate_elements.c \
              load_sprites.c \
              player_movement_bonus.c \
-			 key_events_bonus.c \
+             key_events_bonus.c \
              get_next_line.c \
              cleanup.c \
              utils.c \
