@@ -6,11 +6,14 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:56:08 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/01 17:09:08 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:33:45 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
+// the map is read twice, once to count and once to store, 4 gud mem allocation
+// counts total lines in map file, opens it and counts newlines
+// these newline characters are used to know map HEIGHT before allocating
 static int	count_lines(char *filename)
 {
 	int		fd;
@@ -30,6 +33,8 @@ static int	count_lines(char *filename)
 	return (lines);
 }
 
+// allocates memory for the map awway based on map_height
+// inits all pointers to NULL for safety
 static void	init_map_memory(t_game *game)
 {
 	int	i;
@@ -45,6 +50,8 @@ static void	init_map_memory(t_game *game)
 	}
 }
 
+// processes a line from map file, trims newline character with strtrim
+// stores trimmed string in map[i] and sets map_width from first line
 static void	process_line(t_game *game, char *line, int i, int fd)
 {
 	game->map[i] = ft_strtrim(line, "\n");
@@ -58,6 +65,8 @@ static void	process_line(t_game *game, char *line, int i, int fd)
 		game->map_width = ft_strlen(game->map[i]);
 }
 
+// reads entire map file, line by line using GNL
+// processes each line and stores it in map array
 static void	read_map_lines(char *filename, t_game *game)
 {
 	int		fd;
@@ -81,6 +90,8 @@ static void	read_map_lines(char *filename, t_game *game)
 	close(fd);
 }
 
+// main parsing, counts lines to get height and allocates memory
+// reads all map lines into array then finds player start position
 void	parse_map(char *filename, t_game *game)
 {
 	game->map_height = count_lines(filename);
