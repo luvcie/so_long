@@ -6,11 +6,13 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:37:08 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/01 18:39:40 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:41:25 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <so_long.h>
 
+// loads all 8 wall sprite variants into the wall array :)
+// that way the game can look cute !!! 
 static void	load_wall_sprites(t_game *game)
 {
 	int	width;
@@ -49,6 +51,8 @@ static void	load_game_sprites(t_game *game)
 			"sprites/exit.xpm", &width, &height);
 }
 
+// verifies that all sprites loaded succesfully by checking 
+// if pointers are not NULLL
 static int	check_sprites_loaded(t_game *game)
 {
 	int	i;

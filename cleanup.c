@@ -6,11 +6,13 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:59:33 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/01 16:59:49 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:06:36 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
+// frees all dynamically allocated memory for the map array:
+// iterates through each row, frees the string, then frees array of pointers.
 static void	free_map(t_game *game)
 {
 	int	i;
@@ -28,6 +30,9 @@ static void	free_map(t_game *game)
 	}
 }
 
+// DESTROYS all mlx images stored in X11 server memory and the window
+// iterates through all 8 wall sprites to destroy each one. 
+// mlx images are allocates on x11 server, not in the heap of the pgrogram.
 static void	destroy_images(t_game *game)
 {
 	int	i;
@@ -54,6 +59,9 @@ static void	destroy_images(t_game *game)
 	}
 }
 
+// main cleanup fn: it frees all allocated resources (map mem and mlx imgs)
+// then exits cleanly. this is called when ESC is pressed and window X is clicked
+// and also when player wins the game.
 int	close_window(t_game *game)
 {
 	free_map(game);

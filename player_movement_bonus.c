@@ -6,16 +6,21 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:55:49 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 19:09:59 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:13:10 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
+// to make display_moves_on_screen update the counter
 static void	display_move_count(t_game *game)
 {
 	display_moves_on_screen(game);
 }
 
+// validates movement by checking these 3 conditions: 
+// 1. coords are ithin map boundaries
+// 2. target position is not a wall (1), returns 1 if valid
+// and returns 0 if invalid that way player can't noclip
 static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
 	if (new_x < 0 || new_x >= game->map_width)
@@ -27,6 +32,8 @@ static int	is_valid_move(t_game *game, int new_x, int new_y)
 	return (1);
 }
 
+// iterates through entire map to count remaining collectibles
+// returns total of UNCOLLECTED items
 static int	count_collectibles(t_game *game)
 {
 	int	y;
@@ -49,6 +56,8 @@ static int	count_collectibles(t_game *game)
 	return (count);
 }
 
+// exit logic: if all collectibles were collected (0), win and exit
+// if no then remind player to collect
 static void	handle_exit(t_game *game, int new_x, int new_y)
 {
 	if (count_collectibles(game) == 0)
@@ -68,6 +77,11 @@ static void	handle_exit(t_game *game, int new_x, int new_y)
 	}
 }
 
+// movement logic:
+// validates movement, handles exit tries, updates map array by
+// replacing old position with '0' and new position with 'P',
+// increments move counter, prints when player collects and updates visuals
+// Map array is both the current game state and the source to render from
 void	move_player_bonus(t_game *game, int new_x, int new_y)
 {
 	int	old_x;

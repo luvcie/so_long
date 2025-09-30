@@ -6,16 +6,22 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 20:21:12 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/01 16:40:29 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 20:50:17 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
+// calculates which wall sprite to use depending on tile coords
+// using this formula to get the sprites in random places
 static int	get_wall_variant(int x, int y)
 {
 	return ((x * 7 + y * 13) % 8);
 }
 
+// renders a single tile at position (x,y), draws floor first
+// then draws appropiate sprite on top depending on character
+// uses get_wall_variant to choose wall sprites
+// coords are mult by TILE_SIZE(64) to convert from grid to pixels
 static void	render_tile(t_game *game, int x, int y)
 {
 	int	wall_idx;
@@ -39,6 +45,7 @@ static void	render_tile(t_game *game, int x, int y)
 			x * TILE_SIZE, y * TILE_SIZE);
 }
 
+// iterates through entire map array and renders each tile
 void	render_map(t_game *game)
 {
 	int	y;
@@ -57,6 +64,8 @@ void	render_map(t_game *game)
 	}
 }
 
+// only redraws the two tiles affected by player movement
+// old position and new position instead of redraw entire map like b4
 void	update_player_position(t_game *game, int old_x, int old_y)
 {
 	render_tile(game, old_x, old_y);

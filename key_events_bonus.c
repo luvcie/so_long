@@ -6,11 +6,12 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 19:05:37 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 19:05:51 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 21:10:08 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
+// norminette moment
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
