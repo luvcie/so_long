@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 21:16:38 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 18:03:32 by lucpardo         ###   ########.fr       */
+/*   Created: 2025/05/05 20:54:40 by lucpardo          #+#    #+#             */
+/*   Updated: 2025/09/30 17:54:34 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-	ssize_t	ret;
+	ssize_t ret;
 
-	if (!s)
-		return ;
-	ret = write(fd, s, ft_strlen(s));
+	ret = write(fd, &c, 1);
 	(void)ret;
 }
 /*
 int	main(void)
 {
-	ft_putstr_fd("nosce te ipsum", 1);
+	ft_putchar_fd('\n', 1);
+	ft_putchar_fd('7', 0);
+	ft_putchar_fd('5', 1);
+	ft_putchar_fd('7', 2);
+	ft_putchar_fd('z', 3);
 	return (0);
 }*/

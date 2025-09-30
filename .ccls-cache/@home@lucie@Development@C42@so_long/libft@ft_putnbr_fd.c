@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 21:16:38 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 18:03:32 by lucpardo         ###   ########.fr       */
+/*   Created: 2025/05/05 21:51:46 by lucpardo          #+#    #+#             */
+/*   Updated: 2025/05/06 21:17:24 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	ssize_t	ret;
+	char		c;
+	long long	nbl;
 
-	if (!s)
-		return ;
-	ret = write(fd, s, ft_strlen(s));
-	(void)ret;
+	nbl = n;
+	if (nbl < 0)
+	{
+		write(fd, "-", 1);
+		nbl = -nbl;
+	}
+	if (nbl > 9)
+	{
+		ft_putnbr_fd(nbl / 10, fd);
+	}
+	c = (nbl % 10) + '0';
+	write(fd, &c, 1);
+	return ;
 }
-/*
-int	main(void)
+/*int	main(void)
 {
-	ft_putstr_fd("nosce te ipsum", 1);
+	ft_putnbr_fd(1337, 1);
+	write(1, "\n", 1);
+	ft_putnbr_fd(-2147483648, 1);
+	write(1, "\n", 1);
+	ft_putnbr_fd(111111, 0);
+	write(1, "\n", 1);
+	ft_putnbr_fd(8122036, 2);
+	write(1, "\n", 1);
 	return (0);
 }*/

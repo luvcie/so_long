@@ -1,5 +1,4 @@
 NAME = so_long
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
@@ -34,7 +33,14 @@ all: $(NAME)
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
-$(MLX):
+$(MLX_PATH):
+	@if [ ! -f $(MLX_PATH)/Makefile ]; then \
+		rm -rf $(MLX_PATH); \
+		git clone https://github.com/42Paris/minilibx-linux $(MLX_PATH); \
+		./patch_minilibx.sh; \
+	fi
+
+$(MLX): $(MLX_PATH)
 	make -C $(MLX_PATH)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
@@ -45,11 +51,14 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	make -C $(MLX_PATH) clean
+	@if [ -d $(MLX_PATH) ] && [ -f $(MLX_PATH)/Makefile.gen ]; then \
+		make -C $(MLX_PATH) clean 2>/dev/null || true; \
+	fi
 	make -C $(LIBFT_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
+	rm -rf $(MLX_PATH)
 	make -C $(LIBFT_PATH) fclean
 
 re: fclean all

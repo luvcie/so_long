@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 18:18:00 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 17:51:43 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/05/03 21:04:25 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -24,7 +24,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		{
 			return ((void *)(ptr + i));
 		}
-		i++;
+	i++;
 	}
 	return (NULL);
 }
