@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 18:32:17 by lucpardo          #+#    #+#             */
+/*   Updated: 2025/09/30 19:08:22 by lucpardo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -52,11 +64,13 @@ typedef struct s_game
 	t_img		exit;
 }				t_game;
 
+void	display_moves_on_screen(t_game *game);
 void	load_sprites(t_game *game);
 void	parse_map(char *map_file, t_game *game);
 void	update_player_position(t_game *game, int old_x, int old_y);
 void	render_map(t_game *game);
 void	find_player(t_game *game);
+void	move_player_bonus(t_game *game, int new_x, int new_y);
 int		close_window(t_game *game);
 int		key_press(int keycode, t_game *game);
 char	*get_next_line(int fd);

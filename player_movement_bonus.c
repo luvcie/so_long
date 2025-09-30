@@ -1,15 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_movement.c                                  :+:      :+:    :+:   */
+/*   player_movement_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/01 17:12:25 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 18:55:03 by lucpardo         ###   ########.fr       */
+/*   Created: 2025/09/30 18:55:49 by lucpardo          #+#    #+#             */
+/*   Updated: 2025/09/30 19:09:59 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
+
+static void	display_move_count(t_game *game)
+{
+	display_moves_on_screen(game);
+}
 
 static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
@@ -63,7 +68,7 @@ static void	handle_exit(t_game *game, int new_x, int new_y)
 	}
 }
 
-static void	move_player(t_game *game, int new_x, int new_y)
+void	move_player_bonus(t_game *game, int new_x, int new_y)
 {
 	int	old_x;
 	int	old_y;
@@ -84,21 +89,6 @@ static void	move_player(t_game *game, int new_x, int new_y)
 	if (game->map[new_y][new_x] == 'C')
 		ft_printf("Collected an orb!\n");
 	game->map[new_y][new_x] = 'P';
-	ft_printf("Moves: %d\n", game->player.moves);
+	display_move_count(game);
 	update_player_position(game, old_x, old_y);
-}
-
-int	key_press(int keycode, t_game *game)
-{
-	if (keycode == KEY_ESC)
-		close_window(game);
-	else if (keycode == KEY_W || keycode == KEY_UP || keycode == KEY_K)
-		move_player(game, game->player.x, game->player.y - 1);
-	else if (keycode == KEY_S || keycode == KEY_DOWN || keycode == KEY_J)
-		move_player(game, game->player.x, game->player.y + 1);
-	else if (keycode == KEY_A || keycode == KEY_LEFT || keycode == KEY_H)
-		move_player(game, game->player.x - 1, game->player.y);
-	else if (keycode == KEY_D || keycode == KEY_RIGHT || keycode == KEY_L)
-		move_player(game, game->player.x + 1, game->player.y);
-	return (0);
 }
