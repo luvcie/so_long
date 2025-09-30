@@ -6,12 +6,12 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:49:41 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 19:44:51 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 19:55:42 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
-// draws black pixels in a 100x30 pixels rectangle to clear old text
+// draws charcoal color pixels in a 100x30 pixels rectangle to clear old text
 static void	clear_text_area(t_game *game)
 {
 	int	x;
@@ -23,14 +23,15 @@ static void	clear_text_area(t_game *game)
 		x = 0;
 		while (x < 100)
 		{
-			mlx_pixel_put(game->mlx, game->win, x, y, 0x000000);
+			mlx_pixel_put(game->mlx, game->win, x, y, 0x2F2F2F);
 			x++;
 		}
 		y++;
 	}
 }
 
-// converts int move count to a string, displays it on screen at coordinates 10,20
+// converts int move count to a string, displays it on screen at coords 10,20
+// for mysterious reasons norminette didn't like hex, so color is in decimal
 void	display_moves_on_screen(t_game *game)
 {
 	char	*moves_str;
@@ -39,7 +40,7 @@ void	display_moves_on_screen(t_game *game)
 	clear_text_area(game);
 	moves_str = ft_itoa(game->player.moves);
 	display_text = ft_strjoin("Moves: ", moves_str);
-	mlx_string_put(game->mlx, game->win, 10, 20, 0xB8956D, display_text);
+	mlx_string_put(game->mlx, game->win, 10, 20, 12096877, display_text);
 	free(moves_str);
 	free(display_text);
 }
