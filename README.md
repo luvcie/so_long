@@ -1,3 +1,5 @@
+![alt text](https://i.imgur.com/BIX7ziR.png)
+
 # So Long
 
 A 2D top-down adventure game built with C and the MiniLibX graphics library. Navigate through maps, collect vinyls, and find your way to the exit!

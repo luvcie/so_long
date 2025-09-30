@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 13:28:50 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 23:23:01 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/09/30 23:18:22 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -14,7 +14,6 @@
 # define BUFFER_SIZE 1000
 #endif
 
-// gnl used in get_map_lines
 // reads BUFFER_SIZE bytes from fd into buffer, resets pos to 0
 // returns nbr of bytes read or -1 for error or eof
 static int	refill_buffer(int fd, char *buffer, int *pos)
