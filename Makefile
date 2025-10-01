@@ -7,6 +7,7 @@ SRCS = main.c \
        parse_map.c \
        validate_map.c \
        validate_elements.c \
+	   validate_path.c \
        load_sprites.c \
        player_movement.c \
        get_next_line.c \
@@ -17,6 +18,7 @@ BONUS_SRCS = main.c \
              rendermap.c \
              parse_map.c \
              validate_map.c \
+	   		 validate_path.c \
              validate_elements.c \
              load_sprites.c \
              player_movement_bonus.c \

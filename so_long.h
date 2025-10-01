@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:32:17 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 21:51:28 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:45:12 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	render_map(t_game *game);
 void	find_player(t_game *game);
 void	move_player_bonus(t_game *game, int new_x, int new_y);
 void	print_map_error(char *message);
+void	validate_path(t_game *game);
 void	validate_extension(char *filename);
 void	validate_rectangular(t_game *game);
 void	validate_walls(t_game *game);

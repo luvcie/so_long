@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 21:32:11 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 21:40:16 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:17:57 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -18,7 +18,7 @@ void	print_map_error(char *message)
 	exit(1);
 }
 
-// validates extension, prints specific error if invalid
+// checks if file extension is valid
 void	validate_extension(char *filename)
 {
 	int	len;
