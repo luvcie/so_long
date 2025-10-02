@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 21:32:11 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/10/02 15:57:41 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 17:21:45 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -41,7 +41,10 @@ void	validate_rectangular(t_game *game)
 	{
 		len = ft_strlen(game->map[y]);
 		if (len != game->map_width)
+		{
+			free_game_map(game);
 			print_map_error("Map must be rectangular");
+		}
 		y++;
 	}
 }
@@ -54,14 +57,24 @@ void	validate_walls(t_game *game)
 
 	x = -1;
 	while (++x < game->map_width)
+	{
 		if (game->map[0][x] != '1'
 			|| game->map[game->map_height - 1][x] != '1')
+		{
+			free_game_map(game);
 			print_map_error("Map must be surrounded by walls");
+		}
+	}
 	y = -1;
 	while (++y < game->map_height)
+	{
 		if (game->map[y][0] != '1'
 			|| game->map[y][game->map_width - 1] != '1')
+		{
+			free_game_map(game);
 			print_map_error("Map must be surrounded by walls");
+		}
+	}
 }
 
 // helper function to count element types in map
