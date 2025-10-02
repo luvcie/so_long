@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:59:33 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 21:15:30 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:33:11 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -55,7 +55,9 @@ static void	destroy_images(t_game *game)
 			i++;
 		}
 		if (game->win)
-			mlx_destroy_window(game->mlx, game->win);
+				mlx_destroy_window(game->mlx, game->win);
+			mlx_destroy_display(game->mlx);
+			free(game->mlx);
 	}
 }
 
