@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 21:32:11 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/10/02 17:21:45 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 18:41:08 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -27,7 +27,9 @@ void	validate_extension(char *filename)
 	if (len < 5)
 		print_map_error("Invalid file name");
 	if (ft_strncmp(filename + len - 4, ".ber", 4) != 0)
-		print_map_error("File must have .ber extension");
+	{
+		print_map_error("hey!! file must have .ber extension!");
+	}
 }
 
 // validates rectangular shape, prints error if rows have different lengths
@@ -43,7 +45,7 @@ void	validate_rectangular(t_game *game)
 		if (len != game->map_width)
 		{
 			free_game_map(game);
-			print_map_error("Map must be rectangular");
+			print_map_error("not allowed! we only like rectangles here");
 		}
 		y++;
 	}
@@ -62,7 +64,7 @@ void	validate_walls(t_game *game)
 			|| game->map[game->map_height - 1][x] != '1')
 		{
 			free_game_map(game);
-			print_map_error("Map must be surrounded by walls");
+			print_map_error("the map must be surrounded by walls you know !!");
 		}
 	}
 	y = -1;
@@ -72,7 +74,7 @@ void	validate_walls(t_game *game)
 			|| game->map[y][game->map_width - 1] != '1')
 		{
 			free_game_map(game);
-			print_map_error("Map must be surrounded by walls");
+			print_map_error("the map must be surrounded by walls you know !!");
 		}
 	}
 }
@@ -98,7 +100,7 @@ void	count_elements(t_game *game, int *counts)
 			else if (game->map[y][x] != '0' && game->map[y][x] != '1')
 			{
 				free_game_map(game);
-				print_map_error("Invalid character in map");
+				print_map_error("invalid character in map D:");
 			}
 		}
 	}

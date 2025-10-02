@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:32:17 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/10/02 15:49:04 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 18:31:03 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ typedef struct s_player
 	int		moves;
 }			t_player;
 
+// mlx is a pointer to the mlx instance (connects to x11)
+// win is a pointer to the game window
+// map is a 2d array of strings
+// t_player is a nested struct that has player data (position and count)
+// t_img is sprites, with a pointer to mlx image in x11 memory, width and height
 typedef struct s_game
 {
 	void		*mlx;
