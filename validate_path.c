@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 14:34:29 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/10/01 14:44:00 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:49:57 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -102,6 +102,7 @@ void	validate_path(t_game *game)
 	if (!check_all_reachable(map_copy, game))
 	{
 		free_map_copy(map_copy, game->map_height);
+		free_game_map(game);
 		print_map_error("Invalid path: not all vinyls can be collected :(");
 	}
 	free_map_copy(map_copy, game->map_height);

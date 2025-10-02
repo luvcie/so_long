@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:56:08 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/09/30 20:16:54 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:44:29 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -63,9 +63,10 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nUsage: ./so_long map.ber\n");
 		return (1);
 	}
+	game.mlx = NULL;
+	parse_map(argv[1], &game);
 	if (!init_mlx(&game))
 		return (1);
-	parse_map(argv[1], &game);
 	if (!create_window(&game))
 		return (1);
 	init_game(&game);

@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 21:32:11 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/10/01 14:17:57 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:57:41 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -83,7 +83,10 @@ void	count_elements(t_game *game, int *counts)
 			else if (game->map[y][x] == 'C')
 				counts[2]++;
 			else if (game->map[y][x] != '0' && game->map[y][x] != '1')
+			{
+				free_game_map(game);
 				print_map_error("Invalid character in map");
+			}
 		}
 	}
 }

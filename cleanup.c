@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 16:59:33 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/10/02 15:33:11 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 16:00:33 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -28,6 +28,11 @@ static void	free_map(t_game *game)
 		}
 		free(game->map);
 	}
+}
+
+void	free_game_map(t_game *game)
+{
+	free_map(game);
 }
 
 // DESTROYS all mlx images stored in X11 server memory and the window
@@ -55,9 +60,9 @@ static void	destroy_images(t_game *game)
 			i++;
 		}
 		if (game->win)
-				mlx_destroy_window(game->mlx, game->win);
-			mlx_destroy_display(game->mlx);
-			free(game->mlx);
+			mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: lucpardo <lucpardo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 18:32:17 by lucpardo          #+#    #+#             */
-/*   Updated: 2025/10/01 14:45:12 by lucpardo         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:49:04 by lucpardo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	validate_rectangular(t_game *game);
 void	validate_walls(t_game *game);
 void	validate_elements(t_game *game);
 void	count_elements(t_game *game, int *counts);
+void	free_game_map(t_game *game);
 int		close_window(t_game *game);
 int		key_press(int keycode, t_game *game);
 char	*get_next_line(int fd);
